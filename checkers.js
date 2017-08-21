@@ -25,7 +25,7 @@ var state = {
   * @param {integer} y - the y position of the piece on the board
   * @returns {Array} the legal moves as an array of objects.
   */
-getLegalMoves(piece, x, y) {
+function getLegalMoves(piece, x, y) {
   var moves = [];
   switch(piece) {
     case 'b': // black can only move down the board diagonally
@@ -57,7 +57,7 @@ getLegalMoves(piece, x, y) {
   * @param {integer} x - the x position of the movement
   * @param {integer} y - the y position of the movement
   */
-checkSlide(moves, x, y) {
+function checkSlide(moves, x, y) {
   // Check square is on grid
   if(x < 0 || x > 9 || y < 0 || y > 9) return;
   // check square is unoccupied
@@ -71,7 +71,7 @@ checkSlide(moves, x, y) {
   * @param {Object} jumps - the jumps to clone
   * @returns The cloned jump object
   */
-copyJumps(jumps) {
+function copyJumps(jumps) {
   // Use Array.prototype.slice() to create a copy
   // of the landings and captures array.
   var newJumps = {
@@ -92,7 +92,7 @@ copyJumps(jumps) {
   * @param {integer} x - the current x position of the piece
   * @param {integer} y - the current y position of the peice
   */
-checkJump(moves, jumps, piece, x, y) {
+function checkJump(moves, jumps, piece, x, y) {
   switch(piece) {
     case 'b': // black can only move down the board diagonally
       checkLanding(moves, copyJumps(jumps), x-1, y+1, x-2, y+2);
@@ -126,7 +126,7 @@ checkJump(moves, jumps, piece, x, y) {
   * @param {integer} lx - the 'landing' x position the piece is jumping onto
   * @param {integer} ly - the 'landing' y position of the peice is jumping onto
   */
-checkLanding(moves, jumps, piece, cx, cy, lx, ly) {
+function checkLanding(moves, jumps, piece, cx, cy, lx, ly) {
   // Check landing square is on grid
   if(lx < 0 || lx > 9 || ly < 0 || ly > 9) return;
   // Check landing square is unoccupied
