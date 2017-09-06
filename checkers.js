@@ -208,7 +208,37 @@ function nextTurn() {
   if(state.turn === 'b') state.turn = 'w';
   else state.turn = 'b';
 }
+function handleCheckerClick(event){
+event.preventDefault();
+var parentId =event.target.parentElement.id;
+var x=parseInt(parentId.CharAt(7));
+var y=parseInt(parentId.CharAt(9));
+var moves=getLegalMoves(state.board[y][x],x,y);
+console.log(x,y);
+}
+function setup(){
+  var board =document.createElement('section');
+  board.id='game-board';
+  document.body.appendChild(board);
+  for(var y=0;y<state.board.length;y++){
+    for(var x=0;x<state.board[y].length;x++){
+      var square=document.createElement('div');
+      square.id='square'+x+"-"+'y';
+      square.classList.add('square');
+      if((y+x) % 2===0)square.classList.add('black');
+      board.appendChild(square);
+      if(state.board[y][x]){
+        var checker=document.createElement('div');
+        checker.classList.add('checker');
+        checker.classList.add('checker-'+state.board)
 
+        square.appendChild(checker);
+      }
+    }
+  }
+
+}
+setup();
 /** @function printBoard
   * Prints the current state of the game board
   * to the console.
@@ -272,6 +302,17 @@ function main() {
           } else {
             console.log(index + ". You can " + getJumpString(move));
           }
+        })
+        //promt the user to pick a move
+        rl.question("pick your move from the list:",function(answer){
+          var command=answer.substring(0,1);
+          if(command ==='c' ) return;//=== check if same type same value//  == check if they are the same.
+          command=parseInt(command);
+          if(command===NaN || command >=moves.length)return;
+
+          applyMove(x,y,moves[command]);
+          checkForVictory();
+          nextTurn();
         })
       }
     }
