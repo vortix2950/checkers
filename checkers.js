@@ -1,14 +1,5 @@
 // checkers.js
 
-/* Require statements */
-const readline = require('readline');
-
-// initialize readline as a global variable
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
 /** The state of the game */
 var state = {
   over: false,
