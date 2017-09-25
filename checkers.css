@@ -1,1 +1,16 @@
 /* checkers.css */
+/* checkers.css */
+canvas {
+  border: solid 1px brown;
+  box-shadow: 5px 5px 5px black;
+  position: relative;
+  width: 600px;
+  height: 600px;
+}
+#player_turn{
+  display:block;
+}
+h2{
+  display: inline;
+
+}
